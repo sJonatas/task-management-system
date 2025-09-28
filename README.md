@@ -92,6 +92,130 @@ GET http://localhost:8000/api/tasks
 > yet, it is possible to filter the results with the parameter `filter`, with a key value separated by pipe and 
 > a comma separator for the filters. e.g. `?filter=title|som,description|som,created_at|2025`
 
+GET http://localhost:8000/api/tasks/{id}
+
+> This endpoint returns a specific task.
+> 
+> Response sample:
+
+```json
+{
+    "task": {
+        "id": 8949,
+        "title": "Task sample 01",
+        "description": "A brand new task ready to be executed!",
+        "status": "pending",
+        "priority": "medium",
+        "dueDate": "2025-09-29 00:00:00",
+        "createdAt": "2025-09-28T16:17:54.000000Z",
+        "updatedAt": "2025-09-28T16:17:54.000000Z"
+    },
+    "status": 200
+}
+```
+
 POST http://localhost:8000/api/tasks
-PATCH http://localhost:8000/api/tasks
-DELETE http://localhost:8000/api/tasks
+
+> This endpoint creates a new task.
+> 
+> `Content-Type`: `application/json`
+> 
+> Request sample:
+
+```json
+{
+    "title": "Task sample 01",
+    "description": "A brand new task ready to be executed!",
+    "status": "pending",
+    "priority": "medium",
+    "dueDate": "2025-09-29"
+}
+```
+
+> Response sample:
+
+```json
+{
+    "task": {
+        "id": 9650,
+        "title": "Task sample 01",
+        "description": "A brand new task ready to be executed!",
+        "status": "pending",
+        "priority": "medium",
+        "dueDate": "2025-09-29",
+        "createdAt": "2025-09-28T17:38:33.000000Z",
+        "updatedAt": "2025-09-28T17:38:33.000000Z"
+    },
+    "status": 201
+}
+```
+
+PATCH http://localhost:8000/api/tasks/{id}
+
+> This endpoint allows you to update a specific field of the task.
+> 
+> `Content-Type`: `application/json`
+> 
+> Sample request
+
+```json
+{
+    "title": "patched value",
+    "priority": "high"
+}
+```
+
+> Sample response: 
+
+```json
+{
+    "task": {
+        "id": 8949,
+        "title": "patched value",
+        "description": "A brand new task ready to be executed!",
+        "status": "pending",
+        "priority": "high",
+        "dueDate": "2025-09-29 00:00:00",
+        "createdAt": "2025-09-28T16:17:54.000000Z",
+        "updatedAt": "2025-09-28T16:18:13.000000Z"
+    },
+    "status": 200
+}
+```
+
+DELETE http://localhost:8000/api/tasks/{id}
+
+> This endpoint deletes a task. There is an empty response for it.
+
+GET http://localhost:8000/api/tasks/stats
+
+> This endpoint returns the tasks statistics.
+> 
+> Sample response:
+
+```json
+{
+    "stats": {
+        "totalTasks": 0,
+        "byStatus": {
+            "pending": 0,
+            "in_progress": 0,
+            "completed": 0
+        },
+        "byPriority": {
+            "low": 0,
+            "medium": 0,
+            "high": 0
+        }
+    },
+    "status": 200
+}
+```
+
+**For easier and smooth testing, a Postman collection in provided in the api/docs folder.**
+
+# Tests
+
+To run the api tests, execute the `sh` file `./api/run-tests.sh`
+
+The coverage report may be found at `/api/coverage`

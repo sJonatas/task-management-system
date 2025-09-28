@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "ae17e1f9-50a6-4cf4-a907-8ae43140cfb9",
+		"name": "Task Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1948434"
+	},
+	"item": [
+		{
+			"name": "List All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basepath}}/tasks",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"tasks"
+					]
+				},
+				"description": "This endpoint returns all tasks registered.\n\nThe results are paginated, returning 10 records per page\n\nYou may navigate through the pages by defining the `page` attribute, e.g. `?page=3`.\n\nyet, it is possible to filter the results with the parameter `filter`, with a key value separated by pipe and a comma separator for the filters. e.g. `?filter=title|som,description|som,created_at|2025`"
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Task sample 01\",\n    \"description\": \"A brand new task ready to be executed!\",\n    \"status\": \"pending\",\n    \"priority\": \"medium\",\n    \"dueDate\": \"2025-09-29\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basepath}}/tasks",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basepath}}/tasks/8949",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"tasks",
+						"8949"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n    \"title\": \"patched value\",\n    \"priority\": \"high\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basepath}}/tasks/8949",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"tasks",
+						"8949"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{basepath}}/tasks/9650",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"tasks",
+						"9650"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stats",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{basepath}}/tasks/stats",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"tasks",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "basepath",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		}
+	]
+}
