@@ -14,5 +14,18 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        if (request()->is('api/*')) {
+            $exceptions->render(function (Exception $exception, \Illuminate\Http\Request $request) {
+                $code = ! empty($exception->getCode())
+                    ? $exception->getCode()
+                    : 500;
+
+                $response = [
+                    'error' => $exception->getMessage(),
+                    'status' => $code,
+                ];
+
+                return response()->json($response, $code);
+            });
+        }
     })->create();
