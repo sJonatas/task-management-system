@@ -10,7 +10,8 @@ cd task-management-system
 
 # Start entire stack
 ```bash
-docker-compose up -d
+#set .env files and start docker containers 
+./start.sh
 ```
 
 # Access application
