@@ -1,0 +1,25 @@
+
+.nav-menu {
+    background-color: #ccc;
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 50px;
+    width: 100%;
+    padding: 10px;
+}
+
+li { 
+    display: inline;
+    padding: 10px;
+    background: #ccc;
+}
+
+li a {
+    color: #fff;
+}
+
+li a:hover {
+    color: #ddd;
+}
